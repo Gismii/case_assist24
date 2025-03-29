@@ -1,16 +1,62 @@
-# Integração API, MySQL e Flyway com Python
+# 🚀 Integração API, MySQL e Flyway com Python
 
-Este projeto é uma aplicação Python simples cujo objetivo é consumir uma API pública, extrair dados de usuários e persistir essas informações em um banco de dados MySQL. Os dados do usuário são divididos em duas tabelas:
-- **user:** Dados do usuário.
-- **company:** Dados da empresa associada ao usuário.
+[![Python 3.x](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+[![MySQL 8.0](https://img.shields.io/badge/MySQL-8.0-blue.svg)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)](https://www.docker.com/)
+[![Flyway](https://img.shields.io/badge/Flyway-Migrations-orange.svg)](https://flywaydb.org/)
 
-A gestão do banco (criação de tabelas, procedures e demais alterações) é realizada com o Flyway. O serviço do MySQL e o Flyway são levantados via Docker Compose. A aplicação Python, por sua vez, é executada localmente em um ambiente virtual.
+Projeto que integra uma API pública de usuários com MySQL utilizando migrações controladas pelo Flyway e Docker para orquestração de serviços.
+
+## ✨ Funcionalidades
+
+- Consumo de API REST pública ([JSONPlaceholder](https://jsonplaceholder.typicode.com/users))
+- Persistência em banco MySQL com relacionamento user-company
+- Versionamento de banco usando Flyway
+- Stored procedures para consultas comuns
+- Ambiente isolado com Docker Compose
 
 ---
 
+## 🛠 Tecnologias
+
+- **Python 3.x** - Lógica de integração
+- **MySQL 8.0** - Armazenamento relacional
+- **Flyway** - Migrações e versionamento de schema
+- **Docker** - Containerização dos serviços
+- **python-dotenv** - Gestão de variáveis de ambiente
+---
+
+## 📋 Pré-requisitos
+
+- Python 3.x instalado
+- Docker e Docker Compose instalados
+- Acesso à internet para consumo da API
+
+---
+
+## 🚀 Começando
+
+### 1. Clone o repositório
+```bash
+git clone git@github.com:Gismii/case_assist24.git
+cd case_assist24
+
 ## Estrutura do Projeto
 
-<raiz-do-projeto>/ ├── db/ │ ├── create_connection.py # Módulo para conectar ao MySQL. │ ├── create_tables.py # (Opcional) Módulo para criar tabelas (já substituído pelas migrations). │ ├── insert_company.py # Módulo para inserir dados na tabela company. │ └── insert_user.py # Módulo para inserir dados na tabela user. ├── fetch_users/ │ └── fetch_users.py # Módulo que consome a API e extrai os dados dos usuários. ├── migrations/ │ ├── V1__create_tables.sql # Cria as tabelas (drop, create, constraints). │ └── V2__create_stored_procedures.sql # Cria as stored procedures para busca de usuário por email e listagem. ├── .env # Arquivo de variáveis de ambiente. ├── docker-compose.yml # Configuração do Docker Compose para MySQL e Flyway. ├── requirements.txt # Dependências do Python. └── main.py # Script principal que integra as funcionalidades.
+.
+├── db/
+│   ├── create_connection.py    # Gerenciador de conexões MySQL
+│   ├── insert_company.py       # Inserção de dados na tabela company
+│   └── insert_user.py          # Inserção de dados na tabela user
+├── fetch_users/
+│   └── fetch_users.py          # Cliente da API de usuários
+├── migrations/
+│   ├── V1__create_tables.sql       # DDL inicial
+│   └── V2__create_procedures.sql   # Stored procedures
+├── .env.example                # Template de variáveis
+├── docker-compose.yml          # Definição de serviços
+├── main.py                     # Script principal
+└── requirements.txt            # Dependências Python
 
 
 ---
@@ -86,3 +132,24 @@ docker ps
 Com o ambiente configurado e os containers em execução, execute a aplicação Python para consumir a API e persistir os dados:
 
 python main.py
+
+### Conecte ao MySQL via terminal:
+
+docker exec -it mysql-container mysql -u user -p test_db
+
+### Execute as procedures:
+
+CALL list_all_users();
+CALL get_user_by_email('Sincere@april.biz');
+
+
+## 🚨 Solução de Problemas
+
+### Erros de Conexão com MySQL
+
+🔍 **Containers Ativos?**  
+Verifique se os serviços estão rodando:
+```bash
+docker ps
+
+
