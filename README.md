@@ -36,7 +36,7 @@ Projeto que integra uma API pública de usuários com MySQL utilizando migraçõ
 
 ## 🚀 Começando
 
-### 1. Clone o repositório
+### Clone o repositório
 ```bash
 git clone git@github.com:Gismii/case_assist24.git
 cd case_assist24
@@ -79,11 +79,12 @@ cd case_assist24
 
 ---
 ```
-```bash
+
 ## Instalação e Configuração
 
-### 1. Clone o Repositório
+### Clone o Repositório
 
+```bash
 git clone git@github.com:Gismii/case_assist24.git
 cd case_assist24
 
@@ -122,11 +123,12 @@ DB_NAME=test_db
 
 ```
 
+
+
+## Levante os Containers com Docker Compose
+### Execute o comando abaixo para iniciar os serviços do MySQL e do Flyway:
+
 ```bash
-
-### Levante os Containers com Docker Compose
-Execute o comando abaixo para iniciar os serviços do MySQL e do Flyway:
-
 docker-compose up -d
 
 Isso fará com que:
@@ -144,26 +146,27 @@ docker ps
 
 ```
 
-```bash
+
 
 ### Execução da Aplicação
 Com o ambiente configurado e os containers em execução, execute a aplicação Python para consumir a API e persistir os dados:
 
+```bash
 python main.py
 
 ```
 
-```bash
+
 
 ### Conecte ao MySQL via terminal:
-
+```bash
 docker exec -it mysql-container mysql -u user -p test_db
 
 ```
 
-```bash
-### Execute as procedures:
 
+### Execute as procedures:
+```bash
 CALL list_all_users();
 CALL get_user_by_email('Sincere@april.biz');
 
