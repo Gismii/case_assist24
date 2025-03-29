@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: flyway_migrations
+    depends_on:
+      - mysql
+    command: ["migrate", "-baselineOnMigrate=true"] 
+    environment:
+      FLYWAY_URL: jdbc:mysql://mysql:3306/test_db
+      FLYWAY_USER: user
+      FLYWAY_PASSWORD: root
+    volumes:
+      - ./migrations:/flyway/sql  
+
+volumes:
+  mysql-data:
