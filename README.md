@@ -7,7 +7,7 @@
 
 Projeto que integra uma API pública de usuários com MySQL utilizando migrações controladas pelo Flyway e Docker para orquestração de serviços.
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 - Consumo de API REST pública ([JSONPlaceholder](https://jsonplaceholder.typicode.com/users))
 - Persistência em banco MySQL com relacionamento user-company
@@ -78,14 +78,14 @@ cd case_assist24
 - **Git** (opcional, para clonar o repositório).
 
 ---
-
+```
+```bash
 ## Instalação e Configuração
 
 ### 1. Clone o Repositório
 
-```bash
-git clone <URL-do-repositório>
-cd <nome-do-repositório>
+git clone git@github.com:Gismii/case_assist24.git
+cd case_assist24
 
 ### Crie e Ative o Ambiente Virtual
 
@@ -99,10 +99,17 @@ No Windows:
 python -m venv venv
 venv\Scripts\activate
 
+```
+
+```bash
+
 ###Instale as Dependências
 
-
 pip install -r requirements.txt
+
+```
+
+```bash
 
 ### Configure as Variáveis de Ambiente
 
@@ -112,6 +119,10 @@ DB_PORT=3306
 DB_USER=user
 DB_PASSWORD=root
 DB_NAME=test_db
+
+```
+
+```bash
 
 ### Levante os Containers com Docker Compose
 Execute o comando abaixo para iniciar os serviços do MySQL e do Flyway:
@@ -124,25 +135,41 @@ O MySQL seja iniciado com as credenciais definidas.
 
 O Flyway aplique as migrations presentes na pasta migrations, criando as tabelas e as stored procedures.
 
+```
+
+```bash
 ### Dica: Verifique se os containers estão rodando com:
 
 docker ps
+
+```
+
+```bash
 
 ### Execução da Aplicação
 Com o ambiente configurado e os containers em execução, execute a aplicação Python para consumir a API e persistir os dados:
 
 python main.py
 
+```
+
+```bash
+
 ### Conecte ao MySQL via terminal:
 
 docker exec -it mysql-container mysql -u user -p test_db
 
+```
+
+```bash
 ### Execute as procedures:
 
 CALL list_all_users();
 CALL get_user_by_email('Sincere@april.biz');
 
 
+
+```
 ## 🚨 Solução de Problemas
 
 ### Erros de Conexão com MySQL
@@ -151,5 +178,3 @@ CALL get_user_by_email('Sincere@april.biz');
 Verifique se os serviços estão rodando:
 ```bash
 docker ps
-
-
