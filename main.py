@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from db.create_connection import create_connection
-from db.create_tables import create_tables
 from db.insert_company import insert_company
 from db.insert_user import insert_user
 from fetch_users.fetch_users import fetch_users
