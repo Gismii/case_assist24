@@ -46,8 +46,8 @@ cd case_assist24
 .
 ├── db/
 │   ├── create_connection.py    # Gerenciador de conexões MySQL
-│   ├── insert_company.py       # Inserção de dados na tabela company
-│   └── insert_user.py          # Inserção de dados na tabela user
+│   ├── insert_company.py       # Inserção de dados na tabela company / use caso não queira trabalhar com flayway
+│   └── insert_user.py          # Inserção de dados na tabela user / use caso não queira trabalhar com flayway
 ├── fetch_users/
 │   └── fetch_users.py          # Cliente da API de usuários
 ├── migrations/
